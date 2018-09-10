@@ -98,14 +98,21 @@ namespace XFApp1
                 resultText.Text = "";
                 currentState = 3;
             }
-            resultText.Text += ((Button)sender).Text;
-            if (currentState == 1)
+            resultText.Text = Convert.ToString(double.Parse(resultText.Text + ((Button)sender).Text));
+            try
             {
-                firstNumber = double.Parse(resultText.Text);
-            }
-            else if (currentState == 3)
+                if (currentState == 1)
+                {
+                    firstNumber = double.Parse(resultText.Text);
+                }
+                else if (currentState == 3)
+                {
+                    secondNumber = double.Parse(resultText.Text);
+                }
+            }catch
             {
-                secondNumber = double.Parse(resultText.Text);
+                resultText.Text = "Infinity";
+                currentState = -1;
             }
         }
     }
